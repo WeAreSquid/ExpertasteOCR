@@ -1,26 +1,28 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, UploadFile, File, Depends, Form
 import json, urllib.parse, cv2, base64
-import numpy as np 
+import numpy as np
+from typing import List
+import ast
 
-from com.models.input_model import InputModel
 from com.service.ocr_service import OCRService
 
 router = APIRouter()
 @router.post('/ocr_analysis')
-async def ocr_analysis_rest(input_data: InputModel):
-    #data_form = data.dict(exclude = {'file'})
-    #file_bytes = await data.file.read()
-    #file = cv2.imdecode(np.frombuffer(file_bytes, dtype=np.uint8), flags=1)
+async def ocr_analysis_rest(name: str = Form(...), points: str = Form(), center: str = Form(), file: UploadFile = File(...)):
     try:
-        decoded_bytes = base64.b64decode(input_data.cropped_card)
-        array = np.frombuffer(decoded_bytes, dtype=np.uint8)
-        original_shape = input_data.array_shape  # For example
-        image_array = array.reshape((original_shape[0], original_shape[1], original_shape[2]))
-        
+        points = ast.literal_eval(points)
+        center = ast.literal_eval(center)
+        contents = await file.read()
+        nparr = np.frombuffer(contents, np.uint8)
+
+        # Decode the NumPy array into an OpenCV image
+        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
         ocr_service = OCRService()
-        final_json = ocr_service.main_execution(input_data.name, image_array)
+        final_json = ocr_service.main_execution(name, img)
         json_string = json.dumps(final_json)
         return json.loads(json_string)
+       
     except Exception as e:
         print(e)
         return {'message': e}

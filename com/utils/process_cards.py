@@ -34,7 +34,7 @@ class ProcessCards():
                 
                 #original[y:y+h, x:x+w]
                 cropped_image = image_card[ int(centroid[1]) - int(height): int(centroid[1]) + int(3*height), int(centroid[0]) - int(1.4*width): int(min_per_coordinate[0]) + int(1.8*width)]
-                cv2.imwrite( r"./cropped_image_ethnicity.jpg", cropped_image)
+                #cv2.imwrite( r"./cropped_image_ethnicity.jpg", cropped_image)
                 result = ocr_model.ocr(cropped_image, cls=True)
                 result_list = []
                 for line in result:
@@ -59,7 +59,7 @@ class ProcessCards():
                 
                 #original[y:y+h, x:x+w]
                 cropped_image = image_card[ int(centroid[1]) - int(0.5*height): int(centroid[1]) + int(2.8*height), int(centroid[0]) - int(3.8*width): int(centroid[0]) + int(3.8*width)]
-                cv2.imwrite( r"./cropped_image_age.jpg", cropped_image)
+                #cv2.imwrite( r"./cropped_image_age.jpg", cropped_image)
                 
                 result = ocr_model.ocr(cropped_image, cls=True)
                 _result_json = {}
@@ -90,7 +90,7 @@ class ProcessCards():
                 #original[y:y+h, x:x+w]
                 cropped_image = image_card[ int(centroid[1]) - int(0.5*height): int(centroid[1]) + int(2.5*height), int(centroid[0]) - int(0.7*weight): int(centroid[0]) + int(0.7*weight)]
                 
-                cv2.imwrite( r"./cropped_image_gender.jpg", cropped_image)
+                #cv2.imwrite( r"./cropped_image_gender.jpg", cropped_image)
                 
                 result = ocr_model.ocr(cropped_image, cls=True)
                 result_list = []
@@ -116,7 +116,7 @@ class ProcessCards():
                 
                 #original[y:y+h, x:x+w]
                 cropped_image = image_card[ int(centroid[1]) - int(0.7*height): int(centroid[1]) + int(0.7*height), int(centroid[0]) - int(0.6*weight): int(centroid[0]) + int(1.8*weight)]
-                cv2.imwrite( r"./cropped_image_heardOF.jpg", cropped_image)
+                #cv2.imwrite( r"./cropped_image_heardOF.jpg", cropped_image)
                 
                 result = ocr_model.ocr(cropped_image, cls=True)
                 result_list = []
@@ -142,7 +142,7 @@ class ProcessCards():
                 
                 #original[y:y+h, x:x+w]
                 cropped_image = image_card[ int(centroid[1]) - int(0.7*height): int(centroid[1]) + int(0.7*height), int(centroid[0]) - int(0.6*weight): int(centroid[0]) + int(3*weight)]
-                cv2.imwrite( r"./cropped_image_tried.jpg", cropped_image)
+                #cv2.imwrite( r"./cropped_image_tried.jpg", cropped_image)
                 
                 result = ocr_model.ocr(cropped_image, cls=True)
                 result_list = []
@@ -169,7 +169,7 @@ class ProcessCards():
                 
                 #original[y:y+h, x:x+w]
                 cropped_image = image_card[ int(centroid[1]) - int(0.6*height): int(centroid[1]) + int(6.1*height), int(centroid[0]) - int(2.5*weight): int(centroid[0]) + int(2.5*weight)]
-                cv2.imwrite( r"./cropped_image_packs.jpg", cropped_image)
+                #cv2.imwrite( r"./cropped_image_packs.jpg", cropped_image)
                 
                 result = ocr_model.ocr(cropped_image, cls=True)
                 results_list = [(recognized_points[0],recognized_points[1][0], np.mean(np.array(recognized_points[0]), axis=0), recognized_points[1][1]) for sublist in result for recognized_points in sublist]
@@ -215,7 +215,7 @@ class ProcessCards():
                 
                 #original[y:y+h, x:x+w]
                 cropped_image = image_card[ int(centroid[1]) - int(0.6*height): int(centroid[1]) + int(7*height), int(centroid[0]) - int(1.5*weight): int(centroid[0]) + int(1.5*weight)]
-                cv2.imwrite( r"./cropped_image_rating.jpg", cropped_image)
+                #cv2.imwrite( r"./cropped_image_rating.jpg", cropped_image)
                 
                 result = ocr_model.ocr(cropped_image, cls=True)
                 results_list = [(recognized_points[0],recognized_points[1][0], np.mean(np.array(recognized_points[0]), axis=0), recognized_points[1][1]) for sublist in result for recognized_points in sublist]
