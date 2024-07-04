@@ -1,8 +1,15 @@
 from paddleocr import PaddleOCR, draw_ocr
 from com.utils.act_with_image import ActWithImage
 
+from PIL import Image, ImageEnhance
+import cv2
+import numpy as np
+
+
+
 class RunOcr(ActWithImage):
     def execute_paddleocr(self, sampler_name, ocr_model, img):
+        
         # Perform OCR
         image_dictionary = {}
         image_dictionary['name'] = sampler_name

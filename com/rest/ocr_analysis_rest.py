@@ -8,10 +8,8 @@ from com.service.ocr_service import OCRService
 
 router = APIRouter()
 @router.post('/ocr_analysis')
-async def ocr_analysis_rest(name: str = Form(...), points: str = Form(), center: str = Form(), file: UploadFile = File(...)):
+async def ocr_analysis_rest(name: str = Form(...), file: UploadFile = File(...)):
     try:
-        points = ast.literal_eval(points)
-        center = ast.literal_eval(center)
         contents = await file.read()
         nparr = np.frombuffer(contents, np.uint8)
 

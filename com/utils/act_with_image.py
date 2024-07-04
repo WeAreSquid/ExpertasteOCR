@@ -22,5 +22,5 @@ class ActWithImage():
         os.remove(path)
     
     def instance_model(self):
-        ocr_model = PaddleOCR(ocr_version="PP-OCRv3",lang='en', rec_algorithm = 'CRNN', rec_char_type = 'en', use_angle_cls=True)
+        ocr_model = PaddleOCR(ocr_version="PP-OCRv3", lang='en', rec_char_type = 'en', use_angle_cls=True, det_db_thresh=0.05, det_db_score_mode='slow')
         return ocr_model

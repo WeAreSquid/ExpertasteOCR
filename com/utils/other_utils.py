@@ -135,7 +135,7 @@ def crop_each_bounding_box_and_ocr(self):
             y = y - 5
             cropped_image = self.original_image[y:y+h, x:x+w]
             image_slice_path = "./testing_" + str(image_number) + ".jpg"
-            cv2.imwrite(image_slice_path, cropped_image)
+            #cv2.imwrite(image_slice_path, cropped_image)
             results_from_ocr = self.get_result_from_tersseract(image_slice_path)
             current_row.append(results_from_ocr)
             image_number += 1
